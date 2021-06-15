@@ -1,0 +1,23 @@
+.header {
+    margin: 4rem auto;
+    line-height: 1.4;
+    width: 20%;
+    text-align: center;
+}
+
+.header h1 {
+    font-weight: 400;
+}
+
+.header h2 {
+    font-size: 1rem;
+    color: rgb(117, 115, 115);
+    font-weight: 100;
+}
+
+.content {
+    margin: auto;
+    line-height: 2;
+    width: 50%;
+    text-align: justify;
+}

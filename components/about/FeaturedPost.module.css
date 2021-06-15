@@ -1,0 +1,33 @@
+.featured-post {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2
+}
+
+.header {
+    text-align: center;
+}
+.author {
+    text-align: center;
+    font-weight: 100;
+    font-size: .7rem;
+    margin: 0;
+}
+
+.content {
+    margin: auto;
+    width: 80%;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.click {
+    cursor: pointer;
+    align-content: center;
+}
+
+@media screen and (max-width: 375px) {
+    .content {
+        width: 100%;
+    }
+}

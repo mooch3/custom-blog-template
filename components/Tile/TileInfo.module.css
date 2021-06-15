@@ -1,0 +1,17 @@
+.info {
+    margin: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    z-index: 2;
+    padding: 1rem;
+    color: rgb(73, 73, 73);
+}
+
+.info h1 {
+    font-size: 1rem;
+    letter-spacing: .2rem;
+}
+
+.info p {
+    font-size: .7rem;
+}

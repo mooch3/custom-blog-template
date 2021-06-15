@@ -1,0 +1,15 @@
+.slider-tile {
+    padding: 2rem;
+    flex: 0 0 350px;
+    height: 350px;
+    background-image: url("https://picsum.photos/350/350");
+    background-size: 350px 350px;
+    cursor: pointer; 
+    margin: 0 1rem;
+}
+
+@media screen and (max-width: 650px) {
+    .slider-tile {
+        margin: 0;
+    }
+}

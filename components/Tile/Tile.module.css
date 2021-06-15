@@ -1,0 +1,9 @@
+.tile {
+    padding: 2rem;
+    margin: 2rem;
+    width: 320px;
+    height: 320px;
+    background-image: url("https://picsum.photos/320/320");
+    background-size: 320px 320px;
+    cursor: pointer; 
+}
