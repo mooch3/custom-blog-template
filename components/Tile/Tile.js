@@ -10,7 +10,7 @@ const Tile = (props) => {
     }
     
     return (
-        <div onClick={showPostHandler} className={classes.tile} styles={props.style}>
+        <div onClick={showPostHandler} className={classes.tile} style={{backgroundImage: `url(${props.image})`}}>
             <TileInfo
                 category={props.category}
                 title={props.title}

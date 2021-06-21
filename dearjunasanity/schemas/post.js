@@ -9,6 +9,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'category',
+      title: 'Category',
+      type: 'string'
+    },
+    {
+      name: 'authorName',
+      title: 'Author Name',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -16,12 +26,6 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    },
-    {
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
     },
     {
       name: 'mainImage',
@@ -41,12 +45,21 @@ export default {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+      options: {
+        dateFormat: 'MM/DD/YYYY',
+        timeFormat: 'HH:mm',
+      }
     },
     {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
     },
+    {
+      name: 'comments',
+      title: 'Comments',
+      type: 'number'
+    }
   ],
 
   preview: {

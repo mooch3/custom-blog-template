@@ -1,10 +1,12 @@
 .featured {
     display: grid;
-    grid-template-columns: 20% 30% 10% 20% 20%;
+    grid-template-columns: 20% 35% 10% 20% 10%;
     grid-gap: 1rem;
     justify-items: center;
-    margin: 3rem 0;
+    margin: 0;
+    padding: 3rem 0;
     grid-auto-flow: column;
+    background: #F8F8FF;
 }
 
 @media screen and (max-width: 1100px) {

@@ -1,0 +1,15 @@
+.comment {
+   text-align: left;
+    margin-bottom: 24px;
+}
+
+.comment .date {
+    color: #ccc;
+}
+
+.comment pre {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+}

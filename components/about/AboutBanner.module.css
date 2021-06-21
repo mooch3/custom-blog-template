@@ -1,13 +1,14 @@
 .about {
     width: 100%;
-    background-color: rgba(202, 198, 198, .1);
+    background-color: #F8F8FF;
     text-align: center;
-    grid-area: about;
     margin: auto;
     padding: 2rem;
+    height: auto;
 }
 
 .about h4 {
+    margin: 1rem 0;
     font-size: 3rem;
     color: black;
     padding: none;
@@ -15,4 +16,5 @@
 
 .about p {
     line-height: 2;
+    font-size: 14px;
 }

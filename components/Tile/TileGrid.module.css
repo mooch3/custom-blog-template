@@ -4,5 +4,7 @@
     grid-gap: 1rem;
     justify-items: center;
     line-height: 1.6;
-    margin: 1rem 1rem;
+    margin: 0;
+    padding: 2rem;
+    background-color: #F8F8FF;
 }

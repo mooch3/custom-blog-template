@@ -1,10 +1,13 @@
-import classes from './AboutBanner.module.css';
+import classes from "./AboutBanner.module.css";
+import BlockContent from '@sanity/block-content-to-react'
 
-const AboutBanner = () => {
+const AboutBanner = ({ aboutMe }) => {
   return (
     <div className={classes.about}>
       <h4>Jenny Zisette</h4>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et </p>
+      <BlockContent 
+        blocks={ aboutMe }
+      />
     </div>
   );
 };

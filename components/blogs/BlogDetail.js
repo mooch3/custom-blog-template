@@ -1,17 +1,16 @@
-import BlogImage from "./BlogImage";
 import BlogContent from "./BlogContent";
 
 
-const BlogDetail = (props) => {
+const BlogDetail = ({ image, category, content, date, title }) => {
   return (
     <>
       <BlogContent
-        category={props.category}
-        content={props.content}
-        title={props.title}
-        date={props.date}
+        category={category}
+        content={content}
+        title={title}
+        date={date}
+        image={image}
       />
-      <BlogImage image={props.image} />
     </>
   );
 };

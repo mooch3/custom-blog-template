@@ -3,19 +3,23 @@ import About from "./About";
 import FeaturedPost from "./FeaturedPost";
 
 
-const FeaturedGrid = (props) => {
+const FeaturedGrid = ({ title, content, author, comments, id, image, aboutMe, aboutMeImage }) => {
 
   return (
     <div className={classes.featured}>
 
         <FeaturedPost
-          title={props.title}
-          content={props.content}
-          author={props.author}
-          comments={props.comments}
-          id={props.id}
+          title={title}
+          content={content}
+          author={author}
+          comments={comments}
+          id={id}
+          image={image}
         />
-      <About />
+      <About
+        aboutMe={aboutMe}
+        aboutMeImage={aboutMeImage}
+      />
     </div>
   );
 };

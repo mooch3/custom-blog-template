@@ -1,59 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Carousel.module.css";
 import Buttons from "../Buttons/buttons";
 import SliderTile from "../../Tile/SliderTile";
 
-const Carousel = ({
-  tiles,
-  setWidth,
-  xposition,
-  handleClickPrev,
-  handleClickNext,
-}) => {
-  const transformStyle = {
+const Carousel = ({ tiles, xposition, handleClickPrev, handleClickNext, image }) => {
+  const styles = {
     transform: `translateX(${xposition}px)`,
   };
-
-
-  useEffect(() => {
-    function handleResize() {
-      const { innerWidth: windowWidth } = window;
-      if (windowWidth <= 650) {
-        console.log(windowWidth);
-        const width = 350
-        setWidth(width);
-      }
-      if (windowWidth > 650) {
-        console.log(windowWidth);
-        const width = 350 + 48;
-        setWidth(width);
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("load", handleResize);
-    };
-  }, []);
-
-
 
   return (
     <div className={classes.container}>
       <div
         className={classes.slide}
-        style={transformStyle}
+        style={styles}
         xposition={xposition}
       >
-        {tiles.map((tile, i) => (
+        {tiles.map((tile) => (
           <SliderTile
+            image={tile.image}
             title={tile.title}
             category={tile.category}
             key={tile.id}
             id={tile.id}
-            date={`${tile.date.getMonth()} / ${tile.date.getUTCDate()} / ${tile.date.getFullYear()}`}
+            date={tile.date}
           />
         ))}
       </div>

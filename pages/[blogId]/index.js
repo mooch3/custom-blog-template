@@ -1,89 +1,118 @@
+import { useEffect, useState } from "react";
 import BlogDetail from "../../components/blogs/BlogDetail";
-import { useRouter } from 'next/router';
+import CommentForm from "../../components/forms/CommentForm";
+import Comment from "../../components/comments/Comment";
+import Card from "../../components/ui/Card";
+import sanityClient from "../../client/client";
 
-const DUMMY_DATA = [
-  {
-    title: "Juna",
-    category: "parenting",
-    date: new Date(2021, 5, 23),
-    id: "p1",
-    image: "https://picsum.photos/400/400",
-    content:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-  },
-  {
-    title: "Mowgli",
-    category: "owning pets",
-    date: new Date(2020, 1, 12),
-    id: "p2",
-    image: "https://picsum.photos/400/400",
-    content:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-  },
-  {
-    title: "School",
-    category: "work",
-    date: new Date(2019, 8, 9),
-    id: "p3",
-    image: "https://picsum.photos/400/400",
-    content:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-  },
-  {
-    title: "When your baby does not sleep",
-    category: "parenting",
-    date: new Date(2019, 8, 9),
-    id: "p4",
-    image: "https://picsum.photos/400/400",
-    content:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-  },
-];
+const BlogDetails = ({ post }) => {
+  // pull selected post from params then render to page
+  // use staticProps and Paths to achieve this with Sanity
 
-const BlogDetails = (props) => {
-    // pull selected post from params then render to page 
-    // use staticProps and Paths to achieve this with Sanity
-    const router = useRouter();
-    const selectedPost = router.query.blogId;
 
-    const selectedBlog = DUMMY_DATA.filter(blog => blog.id === selectedPost);
+  const onAddComment = (comment) => {
+    fetch("/api/create-comment", {
+      method: "POST",
+      body: JSON.stringify({ ...comment }),
+      type: "application/json",
+    });
+  };
 
   return (
     <>
       <BlogDetail
-        category={selectedBlog[0].category.toUpperCase()}
-        image={selectedBlog[0].image}
-        title={selectedBlog[0].title}
-        content={selectedBlog[0].content}
-        date={`${selectedBlog[0].date.getMonth()} / ${selectedBlog[0].date.getUTCDate()} / ${selectedBlog[0].date.getFullYear()}`}
+        category={post.category.toUpperCase()}
+        image={post.image}
+        title={post.title}
+        content={post.content}
+        date={`${new Date(post.date).getMonth()} / ${new Date(
+          post.date
+        ).getUTCDate()} / ${new Date(post.date).getFullYear()}`}
       />
+      <Card>
+        <h5>Comments</h5>
+        {post.comments.length === 0 ? (
+          <h5>Be the first to comment</h5>
+        ) : (
+          post.comments.map((comment) => (
+            <Comment
+              key={comment._id}
+              name={comment.name}
+              comment={comment.text}
+              date={comment._createdAt}
+            />
+          ))
+        )}
+      </Card>
+
+      <Card>
+        <CommentForm _id={post._id} addComment={onAddComment} />
+      </Card>
     </>
   );
 };
 
-// export const getStaticPaths = () => {
-//     return {
-//         fallback: false,
-//         paths: DUMMY_DATA.map((blog) => ({
-//             params: { blogId: blog.id}
-//         }))
-//     }
-// }
+export const getStaticPaths = async () => {
+  const getPaths = await sanityClient.fetch(
+    `*[_type == "post"]{
+      slug
+    }`
+  );
 
-// export const getStaticProps = (context) => {
-//   const blogId = context.params.id;
+  return {
+    fallback: "blocking",
+    paths: getPaths.map((path) => ({
+      params: { blogId: path.slug.current },
+    })),
+  };
+};
 
-//   const selectedBlog = DUMMY_DATA.filter((blog) => blog.id === blogId);
-//   return {
-//     props: {
-//       blogData: {
-//         image: selectedBlog[0].image,
-//         title: selectedBlog[0].title,
-//         content: selectedBlog[0].content,
-//         date: selectedBlog[0].date,
-//       },
-//     },
-//   };
-// };
+export const getStaticProps = async (context) => {
+  const blogId = context.params.blogId;
+
+  const getPost = await sanityClient.fetch(
+    `*[slug.current == $blogId]{
+      title,
+      slug,
+      category,
+      _id,
+      publishedAt,
+      mainImage{
+        asset->{
+          _id,
+          url
+         }
+       },
+     body,
+     "comments": *[_type == "comment" && post._ref == ^._id] {
+       name,
+       text,
+       _createdAt,
+       _id
+     },
+    "name": author->name,
+    "authorImage": author->image
+   }`,
+    { blogId }
+  );
+
+  const post = getPost.shift();
+
+  return {
+    props: {
+      post: {
+        title: post.title,
+        slug: post.slug.current,
+        date: post.publishedAt,
+        image: post.mainImage.asset.url,
+        content: post.body,
+        category: post.category,
+        _id: post._id,
+        comments: post.comments.sort((a, b) => a._createdAt - b._createdAt),
+      },
+    },
+    revalidate: 1
+  };
+};
 
 export default BlogDetails;
