@@ -57,8 +57,6 @@ const CommentForm = ({ _id, addComment}) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(event.target.name);
-
     if (!formIsValid) {
       return;
     }
@@ -69,7 +67,6 @@ const CommentForm = ({ _id, addComment}) => {
       text: messageValue,
       _id: _id,
     };
-    console.log(commentObj);
 
     // make async request
 

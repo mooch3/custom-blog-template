@@ -6,6 +6,7 @@ import TileGrid from "../components/Tile/TileGrid";
 import CarouselContainer from "../components/ui/Carousel/CarouselContainer";
 import BlocksToText from "../helpers/blocksToText";
 import Break from "../components/ui/break/Break";
+import DateFormat from "../helpers/dateFormat";
 
 export default function Home({ allPosts, featuredPost, aboutMeData }) {
   return (
@@ -82,9 +83,7 @@ export const getStaticProps = async () => {
         image: post.mainImage.asset.url,
         category: post.category,
         id: post.slug.current,
-        date: `${new Date(post.publishedAt).getMonth()} / ${new Date(
-          post.publishedAt
-        ).getUTCDate()} / ${new Date(post.publishedAt).getFullYear()}`,
+        date: DateFormat(post.publishedAt),
       })),
       featuredPost: {
         title: featuredPost.title,

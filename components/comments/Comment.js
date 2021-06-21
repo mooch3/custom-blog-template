@@ -1,13 +1,12 @@
 import classes from "./Comment.module.css";
+import DateFormat from "../../helpers/dateFormat";
 
 const Comment = ({ name, date, comment }) => {
   return (
     <div className={classes.comment}>
       <p>{name} says</p>
       <p className={classes.date}>
-        {`${new Date(date).getMonth()} / ${new Date(
-          date
-        ).getUTCDate()} / ${new Date(date).getFullYear()}`}
+        {DateFormat(date)}
       </p>
       <pre>{comment}</pre>
     </div>

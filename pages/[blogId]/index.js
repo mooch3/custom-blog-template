@@ -1,14 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import BlogDetail from "../../components/blogs/BlogDetail";
 import CommentForm from "../../components/forms/CommentForm";
 import Comment from "../../components/comments/Comment";
 import Card from "../../components/ui/Card";
 import sanityClient from "../../client/client";
+import useSanityListener from "../../hooks/use-sanity-listener";
+import DateFormat from "../../helpers/dateFormat";
 
 const BlogDetails = ({ post }) => {
   // pull selected post from params then render to page
   // use staticProps and Paths to achieve this with Sanity
+  const { _id } = post;
 
+  const { comments } = useSanityListener(sanityClient, _id);
+
+  const [postComments, setPostComments] = useState([]);
+
+  useEffect(() => {
+      setPostComments(comments);
+      return () => setPostComments([]);
+  }, [comments]);
 
   const onAddComment = (comment) => {
     fetch("/api/create-comment", {
@@ -25,16 +36,14 @@ const BlogDetails = ({ post }) => {
         image={post.image}
         title={post.title}
         content={post.content}
-        date={`${new Date(post.date).getMonth()} / ${new Date(
-          post.date
-        ).getUTCDate()} / ${new Date(post.date).getFullYear()}`}
+        date={DateFormat(post.date)}
       />
       <Card>
         <h5>Comments</h5>
-        {post.comments.length === 0 ? (
-          <h5>Be the first to comment</h5>
+        {postComments.length === 0 ? (
+          <h5>Be the first to comment.</h5>
         ) : (
-          post.comments.map((comment) => (
+          postComments.map((comment) => (
             <Comment
               key={comment._id}
               name={comment.name}
@@ -84,12 +93,6 @@ export const getStaticProps = async (context) => {
          }
        },
      body,
-     "comments": *[_type == "comment" && post._ref == ^._id] {
-       name,
-       text,
-       _createdAt,
-       _id
-     },
     "name": author->name,
     "authorImage": author->image
    }`,
@@ -108,10 +111,9 @@ export const getStaticProps = async (context) => {
         content: post.body,
         category: post.category,
         _id: post._id,
-        comments: post.comments.sort((a, b) => a._createdAt - b._createdAt),
       },
     },
-    revalidate: 1
+    revalidate: 1,
   };
 };
 
