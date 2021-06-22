@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'string'
+    },
+    {
       name: 'category',
       title: 'Category',
       type: 'string'
@@ -54,11 +59,6 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-    },
-    {
-      name: 'comments',
-      title: 'Comments',
-      type: 'number'
     }
   ],
 

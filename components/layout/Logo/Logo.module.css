@@ -1,0 +1,22 @@
+.logo {
+  font-size: 2rem;
+  color: black;
+  font-family: "Give You Glory", "cursive";
+  background-image: linear-gradient(
+    to right,
+    rgba(184, 185, 252, 0.2) 0%,
+    rgba(137, 108, 218, 0.2) 51%,
+    rgba(210, 94, 221, 0.2) 100%
+  );
+  text-align: center;
+  transition: all 600ms cubic-bezier(0.2, 0, 0, 0.8);
+  letter-spacing: 0.4em;
+}
+
+.logo:hover {
+  color: #fffafa;
+}
+
+.logo h1 {
+  margin: 0;
+}

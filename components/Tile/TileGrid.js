@@ -1,8 +1,8 @@
 import classes from './TileGrid.module.css';
 
-const TileGrid = (props) => {
+const TileGrid = ({ children }) => {
     return (
-        <div className={classes.grid}>{props.children}</div>
+        <div className={classes.grid}>{children}</div>
     )
 }
 

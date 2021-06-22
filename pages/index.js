@@ -1,4 +1,4 @@
-import sanityClient from "../client/client";
+import sanityClient from "./api/client";
 import Head from "next/head";
 import FeaturedGrid from "../components/about/FeaturedGrid";
 import Tile from "../components/Tile/Tile";
@@ -7,12 +7,16 @@ import CarouselContainer from "../components/ui/Carousel/CarouselContainer";
 import BlocksToText from "../helpers/blocksToText";
 import Break from "../components/ui/break/Break";
 import DateFormat from "../helpers/dateFormat";
+import Footer from '../components/ui/footer/Footer';
+
 
 export default function Home({ allPosts, featuredPost, aboutMeData }) {
+  // TODO: When there is more content in the db slice the allPosts data to just show most recent 5 posts
   return (
     <>
       <Head>
         <title>Dear Juna</title>
+        <meta name="description" content="A blog about being a young parent, taking care of a new baby, and understanding how one fits into the world." />
       </Head>
       <CarouselContainer posts={allPosts} />
       <Break />
@@ -39,6 +43,7 @@ export default function Home({ allPosts, featuredPost, aboutMeData }) {
           />
         ))}
       </TileGrid>
+      <Footer />
     </>
   );
 }
@@ -52,6 +57,8 @@ export const getStaticProps = async () => {
     category,
     authorName,
     body,
+    "comments": *[_type == "comment" && references(^._id)],
+    _id,
     mainImage{
       asset->{
         _id,
@@ -89,9 +96,10 @@ export const getStaticProps = async () => {
         title: featuredPost.title,
         content: BlocksToText(featuredPost.body).substring(0, 200),
         author: featuredPost.authorName,
-        comments: 0,
         id: featuredPost.slug.current,
+        _id: featuredPost._id,
         image: featuredPost.mainImage.asset.url,
+        comments: featuredPost.comments.length,
       },
       aboutMeData: {
         aboutMeImage: aboutMeData[0].mainImage.asset.url,

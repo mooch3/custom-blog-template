@@ -1,13 +1,7 @@
 import classes from "./BlogContent.module.css";
 import BlockContent from "@sanity/block-content-to-react";
-import sanityClient from '../../client/client';
-import imageUrlBuilder from '@sanity/image-url'
-
-const builder = imageUrlBuilder(sanityClient);
-
-function urlFor(source) {
-  return builder.image(source)
-}
+import sanityClient from '../../pages/api/client';
+import Break from '../ui/break/Break';
 
 const BlogContent = ({ category, title, date, content, image}) => {
   return (
@@ -17,6 +11,7 @@ const BlogContent = ({ category, title, date, content, image}) => {
         <h1>{title}</h1>
         <h2>{date}</h2>
       </div>
+      <Break />
       <div className={classes.content}>
       <img src={image} alt="Photo of baby scrunching face." />
         <BlockContent

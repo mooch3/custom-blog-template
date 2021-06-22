@@ -1,9 +1,9 @@
 import classes from './BlogImage.module.css';
 
-const BlogImage = (props) => {
+const BlogImage = ({ image }) => {
   return (
     <div className={classes['blog-image']}>
-      <img src={props.image} />
+      <img src={image} />
     </div>
   );
 };

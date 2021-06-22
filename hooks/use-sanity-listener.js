@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const useSanityListener = (sanityClient, _id) => {
   const [comments, setComments] = useState([]);
-
   const query = `*[_type == "comment" && post._ref == $_id]`;
   const params = { _id };
 
   useEffect(() => {
     const subscription = sanityClient
       .listen(query, params)
-      .subscribe(update => {
+      .subscribe((update) => {
         console.log(JSON.stringify(update.result));
         const newComment = update.result;
 
@@ -23,15 +22,15 @@ const useSanityListener = (sanityClient, _id) => {
     };
   }, [sanityClient]);
 
-
   const fetchComments = async () => {
     const loadedComments = await sanityClient.fetch(query, params);
+
     setComments(loadedComments);
   };
 
   fetchComments();
 
-  return { comments, setComments };
+  return { comments };
 };
 
 export default useSanityListener;

@@ -5,13 +5,13 @@ import { faComments } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import PrettyButton from "../ui/buttons/PrettyButton";
 
-const FeaturedPost = (props) => {
+const FeaturedPost = ({id, title, author, comments, image, content}) => {
   // const truncatedContent = `${props.content.substring(0, 200)}...`;
 
   const router = useRouter();
 
   const showPostHandler = () => {
-    router.push(`/${props.id}`);
+    router.push(`/${id}`);
   };
 
   return (
@@ -20,24 +20,24 @@ const FeaturedPost = (props) => {
         onClick={showPostHandler}
         className={`${classes.header} ${classes.click}`}
       >
-        {props.title}
+        {title}
       </h1>
       <p
         onClick={showPostHandler}
         className={`${classes.author} ${classes.click}`}
       >
-        BY: {props.author.toUpperCase()}{" "}
-        <FontAwesomeIcon icon={faComments} color="#b8b9fc" /> {props.comments}{" "}
+        BY: {author.toUpperCase()}{" "}
+        <FontAwesomeIcon icon={faComments} color="#b8b9fc" /> {comments}{" "}
         COMMENTS
       </p>
       <div
         onClick={showPostHandler}
         className={`${classes.click} ${classes.image}`}
       >
-        <BlogImage image={props.image} />
+        <BlogImage image={image} />
       </div>
       <div>
-        <p className={classes.content}>{props.content}...</p>
+        <p className={classes.content}>{content}...</p>
       </div>
       <PrettyButton onClick={showPostHandler} type="button">
         Keep Reading...

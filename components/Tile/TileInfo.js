@@ -1,11 +1,11 @@
 import classes from './TileInfo.module.css';
 
-const TileInfo = (props) => {
+const TileInfo = ({ title, date, category }) => {
     return (
         <div className={classes.info}>
-            <h1>{props.title.toUpperCase()}</h1>
-            <p>{props.date}</p>
-            <p>- {props.category} -</p>
+            <h1>{title.toUpperCase()}</h1>
+            <p>{date}</p>
+            <p>- {category} -</p>
         </div>
     )
 }

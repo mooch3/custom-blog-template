@@ -41,6 +41,7 @@ const CarouselContainer = ({ posts, image }) => {
       }
     }
   };
+  
   useEffect(() => {
     const handleAutoPlay = setInterval(handleClickNext, 3000);
 

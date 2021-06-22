@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
 import classes from "./Carousel.module.css";
 import Buttons from "../Buttons/buttons";
-import SliderTile from "../../Tile/SliderTile";
+import Tile from "../../Tile/Tile";
 
 const Carousel = ({ tiles, xposition, handleClickPrev, handleClickNext, image }) => {
   const styles = {
@@ -16,13 +15,14 @@ const Carousel = ({ tiles, xposition, handleClickPrev, handleClickNext, image })
         xposition={xposition}
       >
         {tiles.map((tile) => (
-          <SliderTile
+          <Tile
             image={tile.image}
             title={tile.title}
             category={tile.category}
             key={tile.id}
             id={tile.id}
             date={tile.date}
+            carousel={true}
           />
         ))}
       </div>
