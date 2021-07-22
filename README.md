@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Blog Template built with Sanity
 
-## Getting Started
+# DEAR JUNA Sanity Blog
+Dear Juna is a blog I created for my wife so that we could give totally unqualified advice to our child. The Blog is simple, featuring a carousel, about me blurb, a featured post section, and post tiles at the bottom. It is connected to Sanity CMS and will be deployed using vercel.
 
-First, run the development server:
+## DEMO: ##
+Visit home page, hover over tiles, view a post, post a comment:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Through building the DEAR JUNA blog I developed the following skills: ###
+ * Deep understanding of state management and DOM manipulation
+ * Enacting granualar control over components and pages
+ * Extensive knowledge of Next.js and React applications
+ * Mastery over data fetching and component life cycles
+ * Debugging techniques and unit testing
+ * MVC Architecture
+ * Vercel deployment
+ * Git version control, branching, rebasing, and workflow
+ * Extensive use of HTTPS protocols
+ * Javascript, Node.js, HTML5
+ * Extensive use of CSS to design elegant and easily understood UI
+ * Deep understanding of GROQ (Graph-Relational Object Queries)
+ * Extensive understanding of data models
+ * Creating a self-sustaining product that the end user has fine grained control over
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Fork it if you like the look!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is maintained by Derek Smith (Web).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
