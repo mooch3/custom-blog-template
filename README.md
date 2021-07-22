@@ -5,6 +5,7 @@ Dear Juna is a blog I created for my wife so that we could give totally unqualif
 
 ## DEMO: ##
 Visit home page, hover over tiles, view a post, post a comment:
+
 ![Demonstration of Blog Template](BLOGDEMO.gif)
 
 
